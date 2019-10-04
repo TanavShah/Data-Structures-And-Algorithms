@@ -1,0 +1,40 @@
+//dsc(DEEPANSHU SINGH CHAUHAN)
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long int
+
+int main()
+{
+    ll n,s=0;
+    cin>>n  ;  //Size of Array
+    ll a[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    ll index1,index2;
+    cin>>index1>>index2;
+    sort(a+index1,a+index2+1);
+    cout<<"Minimum Value:"<<a[index1]<<endl;
+    cout<<"Maximum Value:"<<a[index2]<<endl;
+    for(int i=index1;i<=index2;i++)
+    {
+        s=s+a[i];
+        a[i]=a[i]+4;
+    }
+    cout<<"Sum:"<<s<<endl;
+    cout<<"Updated Array:"<<endl;
+    for(int i=0;i<n;i++)
+    {
+        cout<<a[i]<<" ";
+    }
+    cout<<endl;
+
+    return 0;
+}
+
+/*
+Time Complexity of this method in Worst case wouls be
+O(nlogn+n) 
+*/
