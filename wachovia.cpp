@@ -1,10 +1,9 @@
-//                        Saheb Aaje Su Karvana?
 
-#include <iostream>
 #include <bits/stdc++.h>
 
 using namespace std;
 
+//spoj
 int knapsack(int W , int wt[] , int val[] , int n)
 {
     int i,w;
@@ -31,6 +30,7 @@ int knapsack(int W , int wt[] , int val[] , int n)
     return knap[n][W];
 }
 
+//main function
 int main()
 {
     int n;
