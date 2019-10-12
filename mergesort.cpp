@@ -1,23 +1,25 @@
-#include<stdlib.h> 
-#include<stdio.h> 
+#include<iostream>
+using namespace std;
   
-void merge(int arr[], int l, int m, int r) 
+void merge(int arr[], int start, int mid, int end) 
 { 
     int i, j, k; 
-    int n1 = m - l + 1; 
-    int n2 =  r - m; 
+    int n1 = mid - start + 1; 
+    int n2 =  end - mid; 
   
     int L[n1], R[n2]; 
   
     for (i = 0; i < n1; i++) 
-        L[i] = arr[l + i]; 
+        L[i] = arr[start + i]; 
     for (j = 0; j < n2; j++) 
-        R[j] = arr[m + 1+ j]; 
+        R[j] = arr[mid + 1+ j]; 
+	L[n1]=numeric_limits<int>::max();
+	R[n2]=numeric_limits<int>::max();
   
     i = 0;  
     j = 0; 
-    k = l; 
-    while (i < n1 && j < n2) 
+    k = start; 
+    while (i<n1||j<n2) 
     { 
         if (L[i] <= R[j]) 
         { 
@@ -30,38 +32,22 @@ void merge(int arr[], int l, int m, int r)
             j++; 
         } 
         k++; 
-    } 
-  
-    while (i < n1) 
-    { 
-        arr[k] = L[i]; 
-        i++; 
-        k++; 
-    } 
-  
-    /* Copy the remaining elements of R[], if there 
-       are any */
-    while (j < n2) 
-    { 
-        arr[k] = R[j]; 
-        j++; 
-        k++; 
-    } 
+    }
 } 
   
-void mergeSort(int arr[], int l, int r) 
+void mergeSort(int arr[], int start, int end) 
 { 
-    if (l < r) 
+    if (start < end) 
     { 
-        // Same as (l+r)/2, but avoids overflow for 
-        // large l and h 
-        int m = l+(r-l)/2; 
+        // Same as (start+end)/2, but avoids overflow for 
+        // large start and h 
+        int mid = start+(end-start)/2; 
   
         // Sort first and second halves 
-        mergeSort(arr, l, m); 
-        mergeSort(arr, m+1, r); 
+        mergeSort(arr, start, mid); 
+        mergeSort(arr, mid+1, end); 
   
-        merge(arr, l, m, r); 
+        merge(arr, start, mid, end); 
     } 
 } 
   
@@ -86,4 +72,4 @@ int main()
     printf("\nSorted array is \n"); 
     printArray(arr, arr_size); 
     return 0; 
-} 
+}
